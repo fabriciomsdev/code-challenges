@@ -3,12 +3,11 @@ const revertString = (str: string): string => {
 }
 
 const isValid = (subString: string, greatestPalindromic: string): boolean => {
-    const isValid = subString.length > 1;
     const isPalindromic = subString === revertString(subString);
     const greatestLenght = greatestPalindromic?.length ?? 0;
     const greatest =  subString.length > greatestLenght;
 
-    return isPalindromic && isValid && greatest;
+    return isPalindromic && greatest;
 }
 
 const getGreatestPalindromic = (text: string): string => {
@@ -19,6 +18,9 @@ const getGreatestPalindromic = (text: string): string => {
             const subString = text.slice(i, j);
             if (subString && isValid(subString, greatestPalindromic)) greatestPalindromic = subString;
         }
+
+        const subString = text.slice(i);
+        if (subString && isValid(subString, greatestPalindromic)) greatestPalindromic = subString;
     }
     
     return greatestPalindromic;
